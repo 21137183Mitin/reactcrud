@@ -10,15 +10,16 @@ export default class Listaa extends Component {
       super(props);
       this.state = {business: []};
     }
-    componentDidUpdate() {
-        axios.get('http://localhost:4000/business')
-        .then(response => {
-        this.setState({ business: response.data });
-        })
-        .catch(function (error) {
-        console.log(error);
-        })
-        }
+    // 
+    // componentDidUpdate() {
+    //     axios.get('http://localhost:4000/business')
+    //     .then(response => {
+    //     this.setState({ business: response.data });
+    //     })
+    //     .catch(function (error) {
+    //     console.log(error);
+    //     })
+    //     }
   
     componentDidMount(){
       axios.get('http://localhost:4000/business')
