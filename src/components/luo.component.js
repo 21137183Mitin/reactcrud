@@ -1,5 +1,6 @@
 // luo.component.js
 import React, {Component} from 'react';
+import axios from 'axios';
 
 export default class Luo extends Component {
     constructor(props) {
@@ -36,19 +37,28 @@ export default class Luo extends Component {
                                                // e = SyntheticBaseEvent {_reactName: "onChange", _targetInst: null, type: "change", nativeEvent: InputEvent, target: input.form-control, …}bubbles: truecancelable: falsecurrentTarget: nulldefaultPrevented: falseeventPhase: 3isDefaultPrevented: ƒ functionThatReturnsFalse()isPropagationStopped: ƒ functionThatReturnsFalse()isTrusted: truenativeEvent: InputEvent {isTrusted: true, data: "1", isComposing: false, inputType: "insertText", dataTransfer: null, …}target: input.form-controltimeStamp: 585036.6000000001type: "change"_reactName: "onChange"_targetInst: null__proto__: Object
 
     }
-
+    // send the form onSubmit to the server
     onSubmit(e) {
         e.preventDefault();
-        console.log(`The value are ${this.state.person_name},
-        ${this.state.business_name}, ${this.state.business_guest_number}`)
+        const obj = {
+            person_name: this.state.person_name,
+            business_name: this.state.business_name,
+            business_guest_number: this.state.business_guest_number
+        }
+        
+        axios.post('http://localhost:4000/business/add', obj)
+            .then(res=> console.log(res.data));
+        //console.log(`The value are ${this.state.person_name},
+        //${this.state.business_name}, ${this.state.business_guest_number}`)
+        
         this.setState({
-            person_name:'',             // why that works with empty string?
+            person_name:'',             // why that works with empty string? Becasue it clear the form
             business_name:'',
             business_guest_number:''
 
         })
     }
-
+    // Information submission form
     render() {
         return ( 
             <div style = {{marginTop: 10}}>
