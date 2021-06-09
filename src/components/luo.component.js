@@ -85,7 +85,7 @@ export default class Luo extends Component {
                     <div className="form-group">
                         <label>Number: </label>
                         <input 
-                            type="text"
+                            type="number"
                             className="form-control"
                             value = {this.state.business_guest_number}
                             onChange = {this.onChangeGuestNumber}

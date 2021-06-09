@@ -16,10 +16,10 @@ mongoose.connect(config.DB, {useNewUrlParser: true })
     err => {console.log('No connection to database' + err)}
 );
 
-
-app.get("/hello", (req, res, next) => {
-    res.end("Hello world!");
-});
+// Only for test
+// app.get("/hello", (req, res, next) => {
+//     res.end("Hello world!");
+// });
 
 
 

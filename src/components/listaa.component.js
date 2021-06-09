@@ -9,33 +9,58 @@ export default class Listaa extends Component {
   constructor(props) {
       super(props);
       this.state = {business: []};
+      
     }
-    // 
+    
+    
+    
+    
+    
+    
     // componentDidUpdate() {
-    //     axios.get('http://localhost:4000/business')
-    //     .then(response => {
-    //     this.setState({ business: response.data });
+      //     axios.get('http://localhost:4000/business')
+      //     .then(response => {
+        
+    //       this.setState({ business: response.data });
     //     })
     //     .catch(function (error) {
     //     console.log(error);
     //     })
     //     }
-  
     componentDidMount(){
       axios.get('http://localhost:4000/business')
-        .then(response => {
+      .then(response => {
           this.setState({ business: response.data });
         })
         .catch(function (error) {
           console.log(error);
         })
-    }
-    tabRow(){
-      return this.state.business.map(function(object, i){
+      }
+      
+      tabRow(){
+        return this.state.business.map(function(object, i){
           return <TableRow obj={object} key={i} />;
-      });
-    }
+        });
+      }
 
+      componentDidUpdate() {
+          axios.get('http://localhost:4000/business')
+            .then(response => {
+            //console.log(JSON.stringify(response.headers))
+            //console.log(JSON.stringify({ business: response.data }))
+            //console.log(JSON.stringify(this.state.business))
+            //console.log(JSON.stringify(response.data) === JSON.stringify(this.state.business))
+            if (JSON.stringify(response.data) !== JSON.stringify(this.state.business) ) {
+              console.log(JSON.stringify(response.data) === JSON.stringify(this.state.business))
+              this.setState({ business: response.data });
+            }
+            })
+            .catch(function (error) {
+              console.log(error);
+        })
+      }
+      
+      
     render() {
       return (
         <div>
