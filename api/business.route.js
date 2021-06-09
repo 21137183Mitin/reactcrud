@@ -16,8 +16,8 @@ businessRoutes.route('/add').post(function(req, res) {
       });
 });
 
-// Define get_data from DB (index or listaus) route
-businessRoutes.route('/').get((res, req)=>{
+// Defined get data(index or listing) route
+businessRoutes.route('/').get((req, res)=>{ // confused req and res in places
     Business.find((err, businesses)=>{
         if (err) {
             console.log(err)
@@ -26,6 +26,11 @@ businessRoutes.route('/').get((res, req)=>{
         }
     });
 });
+
+
+
+
+
 
 //define edit_route
 businessRoutes.route('/edit/:id').get((res, req)=>{
